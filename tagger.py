@@ -31,7 +31,6 @@ def main(argv):
     trainedDict = {}
     trainedDict = scrape(contentsTrain)
 
-    #pattern = '(.*)/(.*)'
 
 
 
@@ -76,15 +75,15 @@ def scrape(trainFile):
         w.writerow([key,val])
 
 
-    # for line in trainFile:
-    #     match = re.search(pattern,line)
+    #Now that I have a dictionary, I need to combine words with the same key and value
+    #do you divide by the freq of words in the training data when using the testing data?
+    #Todo: create a frequency table with the dictionary
+    #figure out a way to group the same key and value and count how many time it occurs
+    #MAYBE create a dictionary per word, so based off slides:
+    # she = {}
+    # prp: 58, VBN:2, VBD:0
 
-    #     if match:
-    #         key = match.group(1)
-    #         value = match.group(2)
-    #         trainDict[key]=value
-
-    # print(trainDict)
+    #need to figure out a way to automatically make word dict 
 
     return trainDict
 
