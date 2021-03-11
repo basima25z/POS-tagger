@@ -466,7 +466,7 @@ auction,NN
 example,NN
 rose,VBD
 8.04,CD
-7.90,CD
+7.9,CD
 Despite,IN
 investors,NNS
 continue,VBP
@@ -610,7 +610,7 @@ obligations,NNS
 borrowing,VBG
 dropped,VBD
 midnight,NN
-2.80,CD
+2.8,CD
 trillion,CD
 2.87,CD
 Legislation,NN
@@ -1116,7 +1116,7 @@ operating,NN
 efficiencies,NNS
 did,VBD
 come,VB
-true,JJ
+TRUE,JJ
 evaluated,VBD
 raising,VBG
 seemed,VBD
@@ -2265,7 +2265,7 @@ currency,NN
 temporarily,RB
 surged,VBN
 above,IN
-150.00,CD
+150,CD
 yen,NNS
 announcement,NN
 follows,VBZ
@@ -4800,7 +4800,7 @@ London-based,JJ
 Pennview,NNP
 leapt,VBD
 Univest,NNP
-25.50,CD
+25.5,CD
 third-quarter,NN
 70.7,CD
 89.9,CD
@@ -4822,7 +4822,7 @@ near-record,JJ
 Weisfield,NNP
 Ratners,NNP
 definitive,JJ
-57.50,CD
+57.5,CD
 Also,RB
 Jaguar,NNP
 4.4,CD
@@ -5388,7 +5388,7 @@ Jay,NNP
 Goldinger,NNP
 Insight,NNP
 reasons,NNS
-77.70,CD
+77.7,CD
 77.56,CD
 lure,VB
 Dollar-yen,JJ
@@ -5399,9 +5399,9 @@ Banque,NNP
 Paribas,NNP
 convinced,VBN
 erode,VB
-1.8500,CD
+1.85,CD
 1.8415,CD
-143.80,CD
+143.8,CD
 142.85,CD
 Sterling,NNP
 1.5755,CD
@@ -5454,7 +5454,7 @@ participants,NNS
 expectations,NNS
 minimal,JJ
 Commodity,NNP
-374.20,CD
+374.2,CD
 ounce,NN
 Estimated,VBN
 3.5,CD
@@ -5496,7 +5496,7 @@ comedies,NNS
 networks,NNS
 station,NN
 pre-emptive,JJ
-2-8,CD
+8-Feb,CD
 A.C.,NNP
 Nielsen,NNP
 Providence,NNP
@@ -6275,7 +6275,7 @@ fractionally,RB
 Bond,NN
 Industrial,JJ
 finished,VBD
-2645.90,CD
+2645.9,CD
 advancing,VBG
 tidily,RB
 847,CD
@@ -6292,7 +6292,7 @@ Book,NNP
 pattern,NN
 154.2,CD
 benchmark,NN
-2.50,CD
+2.5,CD
 7.88,CD
 afternoon,NN
 Mitsui,NNP
@@ -7353,7 +7353,7 @@ reminded,VBD
 Yang,NNP
 Shangkun,NNP
 assault,NN
-3-4,CD
+4-Mar,CD
 States,NNPS
 crackdown,NN
 ordering,VBG
@@ -7845,7 +7845,7 @@ four-year,JJ
 enacted,VBN
 3.35,CD
 2.65,CD
-3.80,CD
+3.8,CD
 smiles,NNS
 Pat,NNP
 Williams,NNP
@@ -8677,7 +8677,7 @@ Acceptance,NNP
 89,CD
 119,CD
 149,CD
-7.80,CD
+7.8,CD
 7.55,CD
 270,CD
 High-grade,JJ
@@ -8685,7 +8685,7 @@ unsecured,JJ
 multiples,NNS
 8.65,CD
 8.575,CD
-8.50,CD
+8.5,CD
 CERTIFICATES,NNS
 OF,IN
 DEPOSIT,NN
@@ -8695,12 +8695,12 @@ DEPOSIT,NN
 negotiable,JJ
 C.D.s,NNS
 Typical,JJ
-8.60,CD
+8.6,CD
 8.35,CD
 BANKERS,NNS
 ACCEPTANCES,NNS
 8.48,CD
-8.30,CD
+8.3,CD
 8.15,CD
 Negotiable,JJ
 bank-backed,JJ
@@ -8717,7 +8717,7 @@ RATES,NNPS
 LIBOR,NNP
 quotations,NNS
 FOREIGN,NNP
-13.50,CD
+13.5,CD
 4.875,CD
 Switzerland,NNP
 indications,NNS
@@ -8742,7 +8742,7 @@ Telerate,NNP
 NATIONAL,NNP
 ASSOCIATION,NNP
 9.75,CD
-8.70,CD
+8.7,CD
 6\/2,CD
 MERRILL,NNP
 LYNCH,NNP

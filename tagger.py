@@ -3,6 +3,7 @@ import os
 import sys
 import re
 import csv
+import itertools
 
 def main(argv):
     print(argv)
@@ -50,7 +51,6 @@ def removeBrackets(trainFile):
 
 def scrape(trainFile):
 
-    #
     #use regex to get two groups
     #put groups in a dict
     # append to dict as you get more groups --> for loop
@@ -61,18 +61,58 @@ def scrape(trainFile):
 
     splitFileList = trainFile.split()
 
+    # for i in splitFileList:
+    #     match = re.search(pattern,i)
+    #     if match:
+    #         key = match.group(1)
+    #         value = match.group(2)
+    #         trainDict[key]=value
+    # print(trainDict)
+
+    listOfLists = []
     for i in splitFileList:
-        match = re.search(pattern,i)
+        #sublist =[]
+        match=re.search(pattern,i)
         if match:
-            key = match.group(1)
-            value = match.group(2)
-            trainDict[key]=value
-    print(trainDict)
+            key=match.group(1)
+            value=match.group(2)
+            listOfLists.append([key,value,0])
+    print(listOfLists)
+            
 
 
+
+
+
+    #for key in trainDict:
+     #   print(key, '->',trainDict[key])
+
+    # tulpel =[]
+    # for key,value in trainDict:
+    #     tuplel = 
+
+    
+    #for key 
+
+        
+
+
+    
+
+    
+
+
+    #Check: used to see if it was parsing correctly
     w = csv.writer(open("output.csv","w"))
     for key,val in trainDict.items():
         w.writerow([key,val])
+
+
+    #check: used with sublist
+    w = csv.writer(open("outputLists.csv","w"))
+    for key,val,i in listOfLists:
+        w.writerow([key,val,i])
+
 
 
     #Now that I have a dictionary, I need to combine words with the same key and value
