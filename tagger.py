@@ -2,6 +2,7 @@
 import os
 import sys
 import re
+import csv
 
 def main(argv):
     print(argv)
@@ -27,6 +28,14 @@ def main(argv):
     contentsTrain = removeBrackets(contentsTrain)
     print(contentsTrain)
 
+    trainedDict = {}
+    trainedDict = scrape(contentsTrain)
+
+    #pattern = '(.*)/(.*)'
+
+
+
+
 def removeBrackets(trainFile):
     punc = '''[]'''
     for p in trainFile:
@@ -34,14 +43,59 @@ def removeBrackets(trainFile):
             trainFile=trainFile.replace(p,"")
 
     #delete commas and sentance enders etc. 
-    delete_list = ["./.",":/:",",/,","''/''","``/``", "--/:"]
-    #--/:
-    for word in delete_list:
-        trainFile=trainFile.replace(word,"")
+    # delete_list = ["./.",":/:",",/,","''/''","``/``", "--/:"]
+    # #--/:
+    # for word in delete_list:
+    #     trainFile=trainFile.replace(word,"")
     return trainFile
 
 def scrape(trainFile):
-    
+
+    #
+    #use regex to get two groups
+    #put groups in a dict
+    # append to dict as you get more groups --> for loop
+
+    trainDict = {}
+
+    pattern = '(.*)/(.*)'
+
+    splitFileList = trainFile.split()
+
+    for i in splitFileList:
+        match = re.search(pattern,i)
+        if match:
+            key = match.group(1)
+            value = match.group(2)
+            trainDict[key]=value
+    print(trainDict)
+
+
+    w = csv.writer(open("output.csv","w"))
+    for key,val in trainDict.items():
+        w.writerow([key,val])
+
+
+    # for line in trainFile:
+    #     match = re.search(pattern,line)
+
+    #     if match:
+    #         key = match.group(1)
+    #         value = match.group(2)
+    #         trainDict[key]=value
+
+    # print(trainDict)
+
+    return trainDict
+
+
+            
+
+
+
+
+
+
 
 
 
