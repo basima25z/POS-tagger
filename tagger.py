@@ -4,6 +4,7 @@ import sys
 import re
 import csv
 import itertools
+from collections import Counter
 
 def main(argv):
     print(argv)
@@ -11,10 +12,10 @@ def main(argv):
     testingFile = os.path.basename(sys.argv[2])
 
     openTrainFile = open(trainFile, "r")
-    contentsTrain = openTrainFile.read()
+    contentsTrain = openTrainFile.read().lower()
 
     openTestFile = open(testingFile, "r")
-    contentsTest = openTestFile.read()
+    contentsTest = openTestFile.read().lower()
     #print(trainFile)
     #print(testingFile)
 
@@ -69,15 +70,89 @@ def scrape(trainFile):
     #         trainDict[key]=value
     # print(trainDict)
 
+    #uses regex to split it into two parts and adds to a list
     listOfLists = []
+    justKeys = []
     for i in splitFileList:
         #sublist =[]
         match=re.search(pattern,i)
         if match:
             key=match.group(1)
             value=match.group(2)
-            listOfLists.append([key,value,0])
+            listOfLists.append([key,value])
+            justKeys.append(key)
     print(listOfLists)
+
+    
+
+    #creates first frequency table 
+
+    outputFrequency = {}
+
+    for lis in listOfLists:
+        outputFrequency.setdefault(tuple(lis), list()).append(1)
+    for a,b in outputFrequency.items():
+        outputFrequency[a]=sum(b)
+
+    print(outputFrequency)
+
+#########################################################
+    keys=list(outputFrequency.keys()) #so the key is imbedded and value is just freq
+    val = list(outputFrequency.values())
+    #print(keys)
+    listOfListFreq1 =[]
+
+    for i,v in keys:
+        #print(i) #gets you just the word
+        #print(v) #gets you POS
+        for va in val:
+            listOfListFreq1.append([i,v,va])
+
+    #print(val)
+    print(listOfListFreq1)
+
+    
+
+    #print(justKeys)
+
+    #DELETE
+    #c = Counter(justKeys)
+    # print(c.items())
+    #DELETE
+
+
+
+    #creating of second frequency table --> just words and freq
+
+    frequency ={}
+    frequency= freq(justKeys)
+    #print(frequency)
+
+
+
+
+
+
+
+
+
+    #DELETE#########
+    #second frequncy table with just words and frequency 
+
+    # frequencyWord ={}
+
+    # for elem in justKeys:
+    #     frequencyWord.setdefault(tuple(elem), list()).append(1)
+    # for k,v in frequencyWord.items():
+    #     frequencyWord[k]=sum(v)
+    
+    # print(frequencyWord)
+    #DELETE#############
+
+
+
+    
+
             
 
 
@@ -87,12 +162,7 @@ def scrape(trainFile):
     #for key in trainDict:
      #   print(key, '->',trainDict[key])
 
-    # tulpel =[]
-    # for key,value in trainDict:
-    #     tuplel = 
-
-    
-    #for key 
+ 
 
         
 
@@ -110,8 +180,8 @@ def scrape(trainFile):
 
     #check: used with sublist
     w = csv.writer(open("outputLists.csv","w"))
-    for key,val,i in listOfLists:
-        w.writerow([key,val,i])
+    for key,val in listOfLists:
+        w.writerow([key,val])
 
 
 
@@ -127,6 +197,10 @@ def scrape(trainFile):
 
     return trainDict
 
+def freq(justKeys):
+    wordfreq = [justKeys.count(p) for p in justKeys]
+    #print(wordfreq)
+    return dict(list(zip(justKeys,wordfreq)))
 
             
 
