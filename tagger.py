@@ -7,7 +7,7 @@ import itertools
 from collections import Counter
 
 def main(argv):
-    print(argv)
+    #print(argv)
     trainFile = os.path.basename(sys.argv[1])
     testingFile = os.path.basename(sys.argv[2])
 
@@ -19,8 +19,8 @@ def main(argv):
     #print(trainFile)
     #print(testingFile)
 
-    print("-----TRAIN------")
-    print(contentsTrain)
+    #print("-----TRAIN------")
+    #print(contentsTrain)
     #print("------TEST------")
     #print(contentsTest)
     
@@ -28,7 +28,7 @@ def main(argv):
 
     #removeBrackets 
     contentsTrain = removeBrackets(contentsTrain)
-    print(contentsTrain)
+    #print(contentsTrain)
 
     #contentsTest=removeBrackets(contentsTest)
 
@@ -83,7 +83,7 @@ def scrape(trainFile, testFile):
             value=match.group(2)
             listOfLists.append([key,value])
             justKeys.append(key)
-    print(listOfLists)
+    #print(listOfLists)
 
     
 
@@ -100,16 +100,32 @@ def scrape(trainFile, testFile):
 
     ##################BOTH OF THESE WORK^ but this one allows you to utilize the count?
     count = Counter(map(tuple,listOfLists))
-    print(count)
+    #print(count)
 
     # for k,v in count.items():
     #     print(v)
     #     print(k) #k prints out (veto,n)  
 
-    for (word,pos), v in count.items():
-        print(word)
-        print(word,pos)
-    
+    # for (word,pos), v in count.items():
+    #     print(word)
+    #     print(word,pos)
+
+    # w = "veto"
+
+
+    # matchingDict ={}
+    # for(word,pos),v in count.items():
+    #     if w==word:
+    #         #print(word,pos,v)
+    #         matchingDict[word,pos]=v
+    #         #print("Matching Dict: ", matchingDict)
+
+            
+    #        # max_key = max(matchingDict)
+    #         #print(max_key)
+    # print("Matching Dict: ", matchingDict)
+    # max_key = max(matchingDict, key =matchingDict.get)
+    # print("MAX KEY", max_key[1])
 
 
     #for tuples in count.
@@ -154,7 +170,7 @@ def scrape(trainFile, testFile):
 ##############################################
     frequency ={}
     frequency= freq(justKeys)
-    print(frequency)
+   # print(frequency)
     ###########################################
 
 
@@ -219,40 +235,85 @@ def freq(justKeys):
 def tags(trainFile, testFile, count, frequency):
     tagTestWords =[]
     #remove brackets before? --> removed in scrape method
+    splitFileTest = testFile.split()
 
-    for line in testFile:
-        for word in line.split():
-            tagTestWords.append(word)
+    for i in splitFileTest:
+        tagTestWords.append(i)
+
+    # for line in testFile:
+    #     for word in line.split():
+    #         tagTestWords.append(word)
+    
+   # print(tagTestWords)
 
     trainWords=[]
+    splitFileTrain = trainFile.split()
+    
+    for i in splitFileTrain:
+        trainWords.append(i)
 
-    for line in trainFile:
-        for word in line.split():
-            trainWords.append(word)
+    # for line in trainFile:
+    #     for word in line.split():
+    #         trainWords.append(word)
+    
+    # try:
+    #     with open(sys.argv[3], "w") as f:
+    #         for word in tagTestWords:
+    #             print("reached here")
+    #             for (w,pos),v in count.items():
+    #                 if word == w:
+    #                     print(word,w)
+    #                     print(word,w)
+    #                 #     # tag=find_pos(word,count, frequency)
+    #                 #     # wordFin = word + "/" + tag
+    #                 #     # f.write(wordFin + "\n")
+    #                 # else:
+    #                 #     wordNoPosFound= word + "/NN"
+    #                 #     f.write(wordNoPosFound + "\n")
+    # except Exception as e:
+    #     print("ERROR - FILE IO")
+    #     raise
 
-    with open(sys.argv[3], "w+") as f:
-        for word in tagTestWords:
-            for (w,pos),v in count.items():
-                if word == w:
-                    tag=find_pos(word,count, frequency)
-                    wordFin = word + "/" + tag
-                    f.write(wordFin + "\n")
-                else:
-                    wordNoPosFound= word + "/NN"
-                    f.write(wordNoPosFound + "\n")
+    for word in tagTestWords:
+        #print("reached here")
+        for (w,pos),v in count.items():
+            if word == w:
+                #print(word,w)
+                #print(word,w)
+                tag=find_pos(word,count, frequency)
+                wordFin = word + "/" + tag
+                print(wordFin + "\n")
+            # else:
+            #     wordNoPosFound= word + "/NN"
+            #     print(wordNoPosFound + "\n")
 
 
 
 
-def find_pos(word, count,frequency):
-    key_max = max()
+
+def find_pos(w,count,frequency):
+
+    matchingDict ={}
+    for(word,pos),v in count.items():
+        if w==word:
+            #print(word,pos,v)
+            matchingDict[word,pos]=v
+            #print("Matching Dict: ", matchingDict)
+
+            
+           # max_key = max(matchingDict)
+            #print(max_key)
+    #print("Matching Dict: ", matchingDict)
+    max_key = max(matchingDict, key =matchingDict.get)
+    #print("MAX KEY", max_key[1])
+    pos = max_key[1] #GETS YOU POS THAT WE NEED TO RETURN
+
+    return pos
+
 
 
 
 if __name__ == "__main__":
     print('---------------------------------------------------------------------------------------------')
     print('Basima Zafar')
-    print('This program learns an N-gram language model from a randum number of text files.')
-    print('It then generates a number of sentences based on the N-gram model and the number of sentances inputted through command line.')
-    print('---------------------------------------------------------------------------------------------')
     main(sys.argv)
