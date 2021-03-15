@@ -19,10 +19,10 @@ def main(argv):
     #print(trainFile)
     #print(testingFile)
 
-    #print("-----TRAIN------")
-    #print(contentsTrain)
-    #print("------TEST------")
-    #print(contentsTest)
+    # print("-----TRAIN------")
+    # print(contentsTrain)
+    # print("------TEST------")
+    # print(contentsTest)
     
 
 
@@ -290,16 +290,18 @@ def tags(trainFile, testFile, count, frequency):
                 break
 
         if found==False:
-            wordNoPosFound= word + "/NN"
+            wordNoPosFound= word + "/nn"
             print(wordNoPosFound + "\n")
 
-
+#RULES
+#When you're doing rules, do u want it to print also 
+# 5 rules
                 
                 
 
 
 
 if __name__ == "__main__":
-    print('---------------------------------------------------------------------------------------------')
-    print('Basima Zafar')
+    #print('---------------------------------------------------------------------------------------------')
+    #print('Basima Zafar')
     main(sys.argv)
