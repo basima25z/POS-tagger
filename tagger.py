@@ -110,7 +110,7 @@ def scrape(trainFile, testFile):
     #     print(word)
     #     print(word,pos)
 
-    # w = "veto"
+    w = "while"
 
 
     # matchingDict ={}
@@ -221,6 +221,7 @@ def scrape(trainFile, testFile):
 
     tags(trainFile,testFile,count,frequency)
 
+
     return trainDict
 
 
@@ -230,66 +231,6 @@ def freq(justKeys):
     wordfreq = [justKeys.count(p) for p in justKeys]
     #print(wordfreq)
     return dict(list(zip(justKeys,wordfreq)))
-
-
-def tags(trainFile, testFile, count, frequency):
-    tagTestWords =[]
-    #remove brackets before? --> removed in scrape method
-    splitFileTest = testFile.split()
-
-    for i in splitFileTest:
-        tagTestWords.append(i)
-
-    # for line in testFile:
-    #     for word in line.split():
-    #         tagTestWords.append(word)
-    
-   # print(tagTestWords)
-
-    trainWords=[]
-    splitFileTrain = trainFile.split()
-    
-    for i in splitFileTrain:
-        trainWords.append(i)
-
-    # for line in trainFile:
-    #     for word in line.split():
-    #         trainWords.append(word)
-    
-    # try:
-    #     with open(sys.argv[3], "w") as f:
-    #         for word in tagTestWords:
-    #             print("reached here")
-    #             for (w,pos),v in count.items():
-    #                 if word == w:
-    #                     print(word,w)
-    #                     print(word,w)
-    #                 #     # tag=find_pos(word,count, frequency)
-    #                 #     # wordFin = word + "/" + tag
-    #                 #     # f.write(wordFin + "\n")
-    #                 # else:
-    #                 #     wordNoPosFound= word + "/NN"
-    #                 #     f.write(wordNoPosFound + "\n")
-    # except Exception as e:
-    #     print("ERROR - FILE IO")
-    #     raise
-
-    for word in tagTestWords:
-        #print("reached here")
-        for (w,pos),v in count.items():
-            if word == w:
-                #print(word,w)
-                #print(word,w)
-                tag=find_pos(word,count, frequency)
-                wordFin = word + "/" + tag
-                print(wordFin + "\n")
-            # else:
-            #     wordNoPosFound= word + "/NN"
-            #     print(wordNoPosFound + "\n")
-
-
-
-
 
 def find_pos(w,count,frequency):
 
@@ -303,13 +244,58 @@ def find_pos(w,count,frequency):
             
            # max_key = max(matchingDict)
             #print(max_key)
+        else:
+            pos = "NN"
     #print("Matching Dict: ", matchingDict)
     max_key = max(matchingDict, key =matchingDict.get)
+    #print("MAX_KEY: ", max_key)
     #print("MAX KEY", max_key[1])
     pos = max_key[1] #GETS YOU POS THAT WE NEED TO RETURN
 
     return pos
 
+    
+
+
+
+def tags(trainFile, testFile, count, frequency):
+    tagTestWords =[]
+    #remove brackets before? --> removed in scrape method
+    splitFileTest = testFile.split()
+
+    for i in splitFileTest:
+        tagTestWords.append(i)
+
+
+
+    trainWords=[]
+    splitFileTrain = trainFile.split()
+    
+    for i in splitFileTrain:
+        trainWords.append(i)
+
+
+    
+    for word in tagTestWords:
+        found=False
+        for (w,pos),v in count.items():
+            if (word == w):
+                #print(word,w)
+                #print(word,w)
+                tag=find_pos(word,count, frequency)
+                wordFin = word + "/" + tag
+                print(wordFin + "\n")
+                
+                found=True
+                break
+
+        if found==False:
+            wordNoPosFound= word + "/NN"
+            print(wordNoPosFound + "\n")
+
+
+                
+                
 
 
 
