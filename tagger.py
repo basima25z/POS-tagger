@@ -30,8 +30,10 @@ def main(argv):
     contentsTrain = removeBrackets(contentsTrain)
     print(contentsTrain)
 
+    #contentsTest=removeBrackets(contentsTest)
+
     trainedDict = {}
-    trainedDict = scrape(contentsTrain)
+    trainedDict = scrape(contentsTrain, contentsTest)
 
 
 
@@ -50,7 +52,7 @@ def removeBrackets(trainFile):
     #     trainFile=trainFile.replace(word,"")
     return trainFile
 
-def scrape(trainFile):
+def scrape(trainFile, testFile):
 
     #use regex to get two groups
     #put groups in a dict
@@ -87,33 +89,59 @@ def scrape(trainFile):
 
     #creates first frequency table 
 
-    outputFrequency = {}
+    # outputFrequency = {}
 
-    for lis in listOfLists:
-        outputFrequency.setdefault(tuple(lis), list()).append(1)
-    for a,b in outputFrequency.items():
-        outputFrequency[a]=sum(b)
+    # for lis in listOfLists:
+    #     outputFrequency.setdefault(tuple(lis), list()).append(1)
+    # for a,b in outputFrequency.items():
+    #     outputFrequency[a]=sum(b)
 
-    print(outputFrequency)
+    # print(outputFrequency)
 
-#########################################################
-    keys=list(outputFrequency.keys()) #so the key is imbedded and value is just freq
-    val = list(outputFrequency.values())
-    #print(keys)
-    listOfListFreq1 =[]
+    ##################BOTH OF THESE WORK^ but this one allows you to utilize the count?
+    count = Counter(map(tuple,listOfLists))
+    print(count)
 
-    for i,v in keys:
-        #print(i) #gets you just the word
-        #print(v) #gets you POS
-        for va in val:
-            listOfListFreq1.append([i,v,va])
+    # for k,v in count.items():
+    #     print(v)
+    #     print(k) #k prints out (veto,n)  
 
-    #print(val)
-    print(listOfListFreq1)
-
+    for (word,pos), v in count.items():
+        print(word)
+        print(word,pos)
     
 
-    #print(justKeys)
+
+    #for tuples in count.
+
+#########################################################
+    # keys=list(outputFrequency.keys()) #so the key is imbedded and value is just freq
+    # val = list(outputFrequency.values())
+    # #print(keys)
+    # listOfListFreq1 =[]
+
+    # for i,v in keys:
+    #     #print(i) #gets you just the word
+    #     #print(v) #gets you POS
+    #     for va in val:
+    #         listOfListFreq1.append([i,v,va])
+
+    # #print(val)
+    # print(listOfListFreq1)
+
+
+    #count ={}
+    #count = [dict(Counter(x)) for x in listOfLists]
+    #print(count)
+
+    # for lis in listOfLists:
+    #     print(lis[0]) #gets words
+    #     print(lis[1]) #gets POS
+
+
+   
+
+    
 
     #DELETE
     #c = Counter(justKeys)
@@ -123,17 +151,11 @@ def scrape(trainFile):
 
 
     #creating of second frequency table --> just words and freq
-
+##############################################
     frequency ={}
     frequency= freq(justKeys)
-    #print(frequency)
-
-
-
-
-
-
-
+    print(frequency)
+    ###########################################
 
 
     #DELETE#########
@@ -151,26 +173,11 @@ def scrape(trainFile):
 
 
 
-    
-
-            
-
-
-
-
 
     #for key in trainDict:
      #   print(key, '->',trainDict[key])
 
  
-
-        
-
-
-    
-
-    
-
 
     #Check: used to see if it was parsing correctly
     w = csv.writer(open("output.csv","w"))
@@ -194,21 +201,51 @@ def scrape(trainFile):
     # prp: 58, VBN:2, VBD:0
 
     #need to figure out a way to automatically make word dict 
+    testFile=removeBrackets(testFile)
+
+    tags(trainFile,testFile,count,frequency)
 
     return trainDict
+
+
+
 
 def freq(justKeys):
     wordfreq = [justKeys.count(p) for p in justKeys]
     #print(wordfreq)
     return dict(list(zip(justKeys,wordfreq)))
 
-            
+
+def tags(trainFile, testFile, count, frequency):
+    tagTestWords =[]
+    #remove brackets before? --> removed in scrape method
+
+    for line in testFile:
+        for word in line.split():
+            tagTestWords.append(word)
+
+    trainWords=[]
+
+    for line in trainFile:
+        for word in line.split():
+            trainWords.append(word)
+
+    with open(sys.argv[3], "w+") as f:
+        for word in tagTestWords:
+            for (w,pos),v in count.items():
+                if word == w:
+                    tag=find_pos(word,count, frequency)
+                    wordFin = word + "/" + tag
+                    f.write(wordFin + "\n")
+                else:
+                    wordNoPosFound= word + "/NN"
+                    f.write(wordNoPosFound + "\n")
 
 
 
 
-
-
+def find_pos(word, count,frequency):
+    key_max = max()
 
 
 
