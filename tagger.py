@@ -45,11 +45,7 @@ def removeBrackets(trainFile):
         if p in punc:
             trainFile=trainFile.replace(p,"")
 
-    #delete commas and sentance enders etc. 
-    # delete_list = ["./.",":/:",",/,","''/''","``/``", "--/:"]
-    # #--/:
-    # for word in delete_list:
-    #     trainFile=trainFile.replace(word,"")
+
     return trainFile
 
 def scrape(trainFile, testFile):
@@ -110,7 +106,7 @@ def scrape(trainFile, testFile):
     #     print(word)
     #     print(word,pos)
 
-    w = "while"
+    #w = "while"
 
 
     # matchingDict ={}
@@ -219,7 +215,8 @@ def scrape(trainFile, testFile):
     #need to figure out a way to automatically make word dict 
     testFile=removeBrackets(testFile)
 
-    tags(trainFile,testFile,count,frequency)
+    tags(trainFile,testFile,count,frequency) #Accuracy: 83
+    #tag1()
 
 
     return trainDict
@@ -244,10 +241,9 @@ def find_pos(w,count,frequency):
             
            # max_key = max(matchingDict)
             #print(max_key)
-        else:
-            pos = "NN"
+
     #print("Matching Dict: ", matchingDict)
-    max_key = max(matchingDict, key =matchingDict.get)
+    max_key = max(matchingDict, key =matchingDict.get) #baseline 
     #print("MAX_KEY: ", max_key)
     #print("MAX KEY", max_key[1])
     pos = max_key[1] #GETS YOU POS THAT WE NEED TO RETURN
@@ -282,7 +278,7 @@ def tags(trainFile, testFile, count, frequency):
             if (word == w):
                 #print(word,w)
                 #print(word,w)
-                tag=find_pos(word,count, frequency)
+                tag=find_pos(word,count, frequency) #baseline rule
                 wordFin = word + "/" + tag
                 print(wordFin + "\n")
                 
@@ -296,6 +292,9 @@ def tags(trainFile, testFile, count, frequency):
 #RULES
 #When you're doing rules, do u want it to print also 
 # 5 rules
+
+    
+
                 
                 
 
